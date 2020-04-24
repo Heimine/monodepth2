@@ -17,11 +17,12 @@ import torch.utils.data as data
 from torchvision import transforms
 
 
-def pil_loader(path):
+def pil_loader(path): #### Changed
     # open path as file to avoid ResourceWarning
     # (https://github.com/python-pillow/Pillow/issues/835)
     with open(path, 'rb') as f:
         with Image.open(f) as img:
+            img = img.resize((320,256), Image.ANTIALIAS) # For input dimensions be multiple of 32
             return img.convert('RGB')
 
 
